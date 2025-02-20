@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [shows, setShows] = useState([]);
@@ -13,10 +14,12 @@ function Home() {
     <div>
       <h1>Available Shows</h1>
       <ul>
-        {shows.map((show) => (
-          <li key={show.id}>{show.title}</li>
+            {shows.map((show) => (
+            <li key={show.id}>
+                <Link to={`/show/${show.id}`}>{show.title}</Link>
+            </li>
         ))}
-      </ul>
+        </ul>
     </div>
   );
 }
