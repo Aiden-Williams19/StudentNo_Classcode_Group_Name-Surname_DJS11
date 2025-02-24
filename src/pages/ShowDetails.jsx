@@ -22,16 +22,12 @@ function ShowDetails() {
   const toggleFavourite = (episode) => {
     let updatedFavourites;
 
-    // Check if the episode is already in favourites
     if (favourites.some((fav) => fav.id === episode.id)) {
-      // Remove the episode from favourites
       updatedFavourites = favourites.filter((fav) => fav.id !== episode.id);
     } else {
-      // Add the episode to favourites
       updatedFavourites = [...favourites, { ...episode, date: new Date().toLocaleString() }];
     }
 
-    // Update state and localStorage
     setFavourites(updatedFavourites);
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
   };
@@ -43,14 +39,12 @@ function ShowDetails() {
       <h1>{show.title}</h1>
       <p>{show.description}</p>
 
-      <h2>Seasons</h2>
-      <ul>
-        {show.seasons.map((season) => (
-          <li key={season.id} onClick={() => setSelectedSeason(season)}>
-            {season.title}
-          </li>
+      <select onChange={(e) => setSelectedSeason(show.seasons[e.target.value])}>
+        <option value="">Select a Season</option>
+        {show.seasons.map((season, index) => (
+          <option key={index} value={index}>{season.title}</option>
         ))}
-      </ul>
+      </select>
 
       {selectedSeason && (
         <div>
