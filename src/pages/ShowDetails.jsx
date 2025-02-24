@@ -9,6 +9,7 @@ function ShowDetails() {
     JSON.parse(localStorage.getItem("favourites")) || []
   );
   const [loading, setLoading] = useState(true);
+  const [currentPlaying, setCurrentPlaying] = useState(null);
 
   useEffect(() => {
     fetch(`https://podcast-api.netlify.app/id/${id}`)
@@ -30,6 +31,17 @@ function ShowDetails() {
 
     setFavourites(updatedFavourites);
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
+  };
+
+  const handlePlay = (audioId) => {
+    if (currentPlaying && currentPlaying !== audioId) {
+      const previousAudio = document.getElementById(currentPlaying);
+      if (previousAudio) {
+        previousAudio.pause();
+        previousAudio.currentTime = 0;
+      }
+    }
+    setCurrentPlaying(audioId);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -56,6 +68,13 @@ function ShowDetails() {
                 <button onClick={() => toggleFavourite(episode)}>
                   {favourites.some((fav) => fav.id === episode.id) ? "⭐" : "☆"}
                 </button>
+                <audio
+                  id={`audio-${episode.id}`}
+                  controls
+                  onPlay={() => handlePlay(`audio-${episode.id}`)}
+                >
+                  <source src={episode.file} type="audio/mpeg" />
+                </audio>
               </li>
             ))}
           </ul>
