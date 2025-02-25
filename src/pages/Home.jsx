@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Genre mapping
 const genreTitles = {
   1: "Personal Growth",
   2: "Investigative Journalism",
@@ -17,23 +16,42 @@ const genreTitles = {
 function Home() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
     fetch("https://podcast-api.netlify.app")
       .then((res) => res.json())
       .then((data) => {
-        setShows(data);
+        const sortedShows = data.sort((a, b) => a.title.localeCompare(b.title));
+        setShows(sortedShows);
         setLoading(false);
       });
   }, []);
+
+  const filteredShows = selectedGenre
+    ? shows.filter((show) => show.genres.includes(Number(selectedGenre)))
+    : shows;
 
   if (loading) return <p>Loading...</p>;
 
   return (
     <div className="container">
       <h1>Available Shows</h1>
+
+      <select
+        onChange={(e) => setSelectedGenre(e.target.value)}
+        style={{ marginBottom: "1rem", padding: "0.5rem" }}
+      >
+        <option value="">All Genres</option>
+        {Object.entries(genreTitles).map(([id, title]) => (
+          <option key={id} value={id}>
+            {title}
+          </option>
+        ))}
+      </select>
+
       <div className="show-list">
-        {shows.map((show) => (
+        {filteredShows.map((show) => (
           <div key={show.id} className="show-card">
             <Link to={`/show/${show.id}`}>
               <img src={show.image} alt={show.title} />
@@ -43,6 +61,7 @@ function Home() {
                 {show.genres.map((genreId) => genreTitles[genreId]).join(", ")}
               </p>
               <p>Seasons: {show.seasons.length}</p>
+              <p>Last Updated: {new Date(show.updated).toLocaleDateString()}</p>
             </Link>
           </div>
         ))}
