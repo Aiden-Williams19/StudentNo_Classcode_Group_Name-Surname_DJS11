@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function ShowDetails() {
   const { id } = useParams();
@@ -15,7 +16,19 @@ function ShowDetails() {
     fetch(`https://podcast-api.netlify.app/id/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setShow(data);
+        // Add unique IDs to seasons and episodes
+        const showWithIds = {
+          ...data,
+          seasons: data.seasons.map((season) => ({
+            ...season,
+            id: season.id || uuidv4(), // Generate ID if not provided
+            episodes: season.episodes.map((episode) => ({
+              ...episode,
+              id: episode.id || uuidv4(), // Generate ID if not provided
+            })),
+          })),
+        };
+        setShow(showWithIds);
         setLoading(false);
       });
   }, [id]);
@@ -23,12 +36,24 @@ function ShowDetails() {
   const toggleFavourite = (episode) => {
     let updatedFavourites;
 
+    // Check if the episode is already in favourites
     if (favourites.some((fav) => fav.id === episode.id)) {
+      // Remove the episode from favourites
       updatedFavourites = favourites.filter((fav) => fav.id !== episode.id);
     } else {
-      updatedFavourites = [...favourites, { ...episode, date: new Date().toLocaleString() }];
+      // Add the episode to favourites
+      updatedFavourites = [
+        ...favourites,
+        {
+          ...episode,
+          showTitle: show.title, // Add show title
+          seasonTitle: selectedSeason.title, // Add season title
+          date: new Date().toLocaleString(), // Add date
+        },
+      ];
     }
 
+    // Update state and localStorage
     setFavourites(updatedFavourites);
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
   };
@@ -50,7 +75,11 @@ function ShowDetails() {
     <div className="container show-details">
       <Link to="/">Back to Shows</Link>
       <h1>{show.title}</h1>
-      <img src={show.image} alt={show.title} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px" }} />
+      <img
+        src={show.image}
+        alt={show.title}
+        style={{ width: "100%", maxWidth: "400px", borderRadius: "8px" }}
+      />
       <p>{show.description}</p>
 
       <h2>Seasons</h2>
@@ -69,7 +98,11 @@ function ShowDetails() {
       {selectedSeason && (
         <div>
           <h3>{selectedSeason.title}</h3>
-          <img src={selectedSeason.image} alt={selectedSeason.title} style={{ width: "100%", maxWidth: "400px", borderRadius: "8px" }} />
+          <img
+            src={selectedSeason.image}
+            alt={selectedSeason.title}
+            style={{ width: "100%", maxWidth: "400px", borderRadius: "8px" }}
+          />
           <ul className="episode-list">
             {selectedSeason.episodes.map((episode) => (
               <li key={episode.id} className="episode-item">

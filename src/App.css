@@ -49,6 +49,56 @@
     margin-top: 80px;
   }
   
+/* Favourites Page Styles */
+.favourites-group {
+  margin-bottom: 2rem;
+}
+
+.favourites-group h2 {
+  color: #ffd700; /* Gold for show titles */
+  margin-bottom: 1rem;
+}
+
+.season-group {
+  margin-left: 1rem;
+}
+
+.season-group h3 {
+  color: #ffd700; /* Gold for season titles */
+  margin-bottom: 0.5rem;
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+}
+
+.episode-item {
+  background-color: #444; /* Darker grey for episodes */
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.episode-item h4 {
+  margin: 0;
+  color: #ffd700; /* Gold for episode titles */
+}
+
+.episode-item p {
+  margin: 0.5rem 0;
+  color: #ccc; /* Light grey for details */
+}
+
+.sort-dropdown {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #333; /* Grey dropdown */
+  color: #ffd700; /* Gold text */
+  border: 1px solid #ffd700; /* Gold border */
+  border-radius: 8px;
+}
+
   @media (max-width: 768px) {
     .navbar-container {
       flex-direction: column;
