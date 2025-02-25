@@ -125,26 +125,6 @@ button:focus-visible {
   margin-top: 0.5rem;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.navbar a {
-  margin: 0 1rem;
-  color: #ffd700; 
-}
-
-.navbar a:hover {
-  color: #c0a050; 
-}
 
 @media (max-width: 768px) {
   .show-list {
