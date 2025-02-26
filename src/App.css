@@ -74,7 +74,7 @@
 }
 
 .episode-item {
-  background-color: #444; /* Darker grey for episodes */
+  background-color: #444; 
   border-radius: 8px;
   padding: 1rem;
   margin: 0.5rem 0;
@@ -82,20 +82,20 @@
 
 .episode-item h4 {
   margin: 0;
-  color: #ffd700; /* Gold for episode titles */
+  color: #ffd700;
 }
 
 .episode-item p {
   margin: 0.5rem 0;
-  color: #ccc; /* Light grey for details */
+  color: #ccc;
 }
 
 .sort-dropdown {
   margin-bottom: 1rem;
   padding: 0.5rem;
-  background-color: #333; /* Grey dropdown */
-  color: #ffd700; /* Gold text */
-  border: 1px solid #ffd700; /* Gold border */
+  background-color: #333; 
+  color: #ffd700;
+  border: 1px solid #ffd700; 
   border-radius: 8px;
 }
 

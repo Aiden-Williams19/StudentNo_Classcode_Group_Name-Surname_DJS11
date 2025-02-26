@@ -36,12 +36,9 @@ function ShowDetails() {
   const toggleFavourite = (episode) => {
     let updatedFavourites;
 
-    // Check if the episode is already in favourites
     if (favourites.some((fav) => fav.id === episode.id)) {
-      // Remove the episode from favourites
       updatedFavourites = favourites.filter((fav) => fav.id !== episode.id);
     } else {
-      // Add the episode to favourites
       updatedFavourites = [
         ...favourites,
         {
@@ -53,7 +50,6 @@ function ShowDetails() {
       ];
     }
 
-    // Update state and localStorage
     setFavourites(updatedFavourites);
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
   };

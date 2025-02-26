@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import ShowDetails from "./pages/ShowDetails";
 import Favourites from "./pages/Favourites";
-import "./App.css"; // Ensure this import is present
+import "./App.css"; 
 
 function App() {
   return (
