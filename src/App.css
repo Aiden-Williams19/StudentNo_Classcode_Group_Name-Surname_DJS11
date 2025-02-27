@@ -1,61 +1,61 @@
 .navbar {
-    background-color: #333;
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-  
-  .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  .navbar-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffd700;
-    text-decoration: none;
-  }
-  
-  .navbar-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-item {
-    margin-left: 1rem;
-  }
-  
-  .navbar-link {
-    color: #ffd700; 
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  
-  .navbar-link:hover {
-    color: #c0a050; 
-  }
-  
-  .container {
-    margin-top: 80px;
-  }
-  
+  background-color: #333;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-left: 1rem;
+}
+
+.navbar-link {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #c0a050;
+}
+
+.container {
+  margin-top: 80px;
+}
+
 /* Favourites Page Styles */
 .favourites-group {
   margin-bottom: 2rem;
 }
 
 .favourites-group h2 {
-  color: #ffd700; /* Gold for show titles */
+  color: #ffd700;
   margin-bottom: 1rem;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .season-group h3 {
-  color: #ffd700; /* Gold for season titles */
+  color: #ffd700;
   margin-bottom: 0.5rem;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .episode-item {
-  background-color: #444; 
+  background-color: #444;
   border-radius: 8px;
   padding: 1rem;
   margin: 0.5rem 0;
@@ -93,23 +93,32 @@
 .sort-dropdown {
   margin-bottom: 1rem;
   padding: 0.5rem;
-  background-color: #333; 
+  background-color: #333;
   color: #ffd700;
-  border: 1px solid #ffd700; 
+  border: 1px solid #ffd700;
   border-radius: 8px;
 }
 
-  @media (max-width: 768px) {
-    .navbar-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-menu {
-      margin-top: 1rem;
-    }
-  
-    .navbar-item {
-      margin: 0.5rem 0;
-    }
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: center;
   }
+
+  .navbar-menu {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-item {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar-link {
+    padding: 0.5rem 1rem;
+  }
+}
