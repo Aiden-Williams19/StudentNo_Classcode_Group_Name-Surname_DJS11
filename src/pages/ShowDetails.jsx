@@ -94,6 +94,7 @@ function ShowDetails() {
       {selectedSeason && (
         <div>
           <h3>{selectedSeason.title}</h3>
+          <p>Episodes: {selectedSeason.episodes.length}</p>
           <img
             src={selectedSeason.image}
             alt={selectedSeason.title}
