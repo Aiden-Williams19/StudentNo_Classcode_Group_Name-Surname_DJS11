@@ -39,6 +39,7 @@ function Home() {
       <h1>Available Shows</h1>
 
       <select
+        className="season-dropdown"
         onChange={(e) => setSelectedGenre(e.target.value)}
         style={{ marginBottom: "1rem", padding: "0.5rem" }}
       >
